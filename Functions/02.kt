@@ -5,14 +5,14 @@ fun apresentarPessoa(nome: String, idade: Int): String {
     // Implemente a função para retornar "Nome: <nome>, Idade: <idade>"
     // Exemplo de chamada: apresentarPessoa("Ana", 30)
     // Resultado esperado: "Nome: Ana, Idade: 30"
-    return ""
+    return "Nome: $nome, Idade: $idade"
 }
 
 fun calcularAreaCirculo(raio: Double): Double {
     // Implemente a função para retornar a área do círculo dado o raio
     // Exemplo de chamada: calcularAreaCirculo(5.0)
     // Resultado esperado: 78.53981633974483
-    return 0.0
+    return Math.PI * Math.pow(raio, 2.0)
 }
 
 // 2. Parâmetros
@@ -20,14 +20,14 @@ fun descreverProduto(nome: String, preco: Double, quantidade: Int): String {
     // Implemente a função para retornar "Produto: <nome>, Preço: <preco>, Quantidade: <quantidade>"
     // Exemplo de chamada: descreverProduto("Caneta", 1.50, 10)
     // Resultado esperado: "Produto: Caneta, Preço: 1.5, Quantidade: 10"
-    return ""
+    return "Produto: $nome, Preço: $preco, Quantidade: $quantidade"
 }
 
 fun calcularDesconto(preco: Double, porcentagemDesconto: Double): Double {
     // Implemente a função para calcular o preço com desconto
     // Exemplo de chamada: calcularDesconto(100.0, 15.0)
     // Resultado esperado: 85.0
-    return 0.0
+    return preco * (1 - porcentagemDesconto / 100)
 }
 
 // 3. Retornos
@@ -35,14 +35,20 @@ fun obterMaiorNumero(a: Int, b: Int): Int {
     // Implemente a função para retornar o maior número entre a e b
     // Exemplo de chamada: obterMaiorNumero(5, 10)
     // Resultado esperado: 10
-    return 0
+    when {
+        a > b -> return a
+        else -> return b
+    }
 }
 
 fun verificarIdadeParaVotar(idade: Int): Boolean {
     // Implemente a função para verificar se a idade é suficiente para votar
     // Exemplo de chamada: verificarIdadeParaVotar(20)
     // Resultado esperado: true
-    return true
+    when {
+        idade >= 16 -> return true
+        else -> return false
+    }
 }
 
 // 4. Funções de Ordem Superior
@@ -50,31 +56,39 @@ fun operacaoComNumero(numero: Double, operacao: (Double) -> Double): Double {
     // Implemente a função para aplicar a operação ao número
     // Exemplo de chamada: operacaoComNumero(10.0) { it * 2 }
     // Resultado esperado: 20.0
-    return 0.0
+    return operacao(numero)
 }
 
 fun filtrarNumerosPositivos(numeros: List<Int>, filtro: (Int) -> Boolean): List<Int> {
     // Implemente a função para filtrar números positivos
     // Exemplo de chamada: filtrarNumerosPositivos(listOf(-1, 2, 3, -4)) { it > 0 }
     // Resultado esperado: [2, 3]
-    return listOf()
+    val listReturn = mutableListOf<Int>()
+    for(numero in numeros){
+        if(filtro(numero)){
+            listReturn.add(numero)
+        }
+    }
+    return listReturn
 }
 
 // 5. Lambdas
 
 //Descomentar as funçôes para implementar a resposta
 
-//val ehPar: (Int) -> Boolean = { numero ->
-//    // Implemente a expressão lambda para verificar se o número é par
-//    // Exemplo de chamada: ehPar(4)
-//    // Resultado esperado: true
-//}
+val ehPar: (Int) -> Boolean = { numero ->
+   // Implemente a expressão lambda para verificar se o número é par
+   // Exemplo de chamada: ehPar(4)
+   // Resultado esperado: true
+   numero % 2 == 0
+}
 
-//val calcularSalario: (Int, Double) -> Double = { horasTrabalhadas, valorPorHora ->
-//    // Implemente a expressão lambda para calcular o salário com base nas horas trabalhadas e valor por hora
-//    // Exemplo de chamada: calcularSalario(40, 15.0)
-//    // Resultado esperado: 600.0
-//}
+val calcularSalario: (Int, Double) -> Double = { horasTrabalhadas, valorPorHora ->
+   // Implemente a expressão lambda para calcular o salário com base nas horas trabalhadas e valor por hora
+   // Exemplo de chamada: calcularSalario(40, 15.0)
+   // Resultado esperado: 600.0
+   horasTrabalhadas * valorPorHora
+}
 
 // Função principal para testar as práticas
 fun main() {
@@ -98,6 +112,6 @@ fun main() {
 
     // 5. Lambdas
     // Descomentar os prints quando for implementado as funções Lambdas
-    //println("Número é par? ${ehPar(4)}")  // Esperado: true
-    //println("Salário calculado: ${calcularSalario(40, 15.0)}")  // Esperado: 600.0
+    println("Número é par? ${ehPar(4)}")  // Esperado: true
+    println("Salário calculado: ${calcularSalario(40, 15.0)}")  // Esperado: 600.0
 }

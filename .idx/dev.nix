@@ -7,7 +7,7 @@
   packages = [
     pkgs.kotlin
     pkgs.gradle
-    pkgs.jdk
+    pkgs.zulu17
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -15,6 +15,7 @@
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       "fwcd.kotlin"
+      "formulahendry.code-runner"
     ];
     # Enable previews
     previews = {
