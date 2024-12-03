@@ -7,7 +7,7 @@
   packages = [
     pkgs.kotlin
     pkgs.gradle
-    pkgs.zulu17
+    pkgs.jdk21
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -40,6 +40,7 @@
         # Example: install JS dependencies from NPM
         # npm-install = "npm install";
         # Open editors for the following files by default, if they exist:
+        gradle-dependencies = "gradle app:dependencies";
         default.openFiles = [ ".idx/dev.nix" "README.md" ];
       };
       # Runs when the workspace is (re)started
